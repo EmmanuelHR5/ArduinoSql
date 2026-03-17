@@ -1,0 +1,23 @@
+services:
+  mysql:
+    image: mysql:latest
+    container_name: ServerDB
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: cloud123.*
+      MYSQL_DATABASE: programables
+      MYSQL_USER: emmanuel
+      MYSQL_PASSWORD: cloud123.*
+    ports:
+        - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command : --bind-address=0.0.0.0
+    networks:
+        - mysql_network      
+volumes:
+   mysql_data:
+    driver: local
+networks:
+  mysql_network:
+    driver: bridge
